@@ -1,6 +1,7 @@
 package com.cool.java_core;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -43,6 +44,10 @@ class Order {
     }
 
     public double getCost() {
+        HashSet set = new HashSet();
+        
         return cost;
     }
+
+
 }
