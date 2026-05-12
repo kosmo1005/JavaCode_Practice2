@@ -13,7 +13,6 @@ public class MainBlockingQueue {
         ExecutorService producerPool = Executors.newFixedThreadPool(2);
         ExecutorService consumerPool = Executors.newFixedThreadPool(3);
 
-        // 🔥 PRODUCERS (быстрее пишут)
         for (int i = 0; i < 10; i++) {
             int id = i;
             producerPool.submit(() -> {
@@ -27,7 +26,6 @@ public class MainBlockingQueue {
             });
         }
 
-        // 🐢 CONSUMERS (медленнее читают)
         for (int i = 0; i < 10; i++) {
             consumerPool.submit(() -> {
                 try {
