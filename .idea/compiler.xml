@@ -2,9 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/JavaCore/src/main/resources/archetype-resources" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/GeometryApp/src/main/resources/archetype-resources" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/GeometryLibrary/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/SpringMVC/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
@@ -13,10 +11,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GeometryLibrary" />
-        <module name="GeometryApp" />
-        <module name="JavaCore" />
+        <module name="SpringMVC" />
         <module name="GeometryUtils" />
+        <module name="JavaCore" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="GeometryApp" target="9" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="GeometryLibrary" options="-parameters" />
+      <module name="GeometryUtils" options="-parameters" />
+      <module name="JavaCore" options="-parameters" />
+      <module name="SpringMVC" options="-parameters" />
+    </option>
   </component>
 </project>
