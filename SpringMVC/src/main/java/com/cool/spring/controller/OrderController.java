@@ -5,14 +5,15 @@ import com.cool.spring.dto.OrderDto;
 import com.cool.spring.dto.PageResponse;
 import com.cool.spring.service.OrderService;
 import com.cool.spring.view.Views;
-import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,86 +28,145 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/orders")
-@RequiredArgsConstructor
+
 @Validated
 public class OrderController {
 
     private final OrderService svc;
+    private final ObjectMapper mapper;
+
+    public OrderController(OrderService svc, ObjectMapper mapper) {
+        this.svc = svc;
+        this.mapper = mapper;
+
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
 
     /**
      * Получить все заказы пользователя
      */
     @GetMapping
-    @JsonView(Views.Summary.class)
-    public ResponseEntity<PageResponse<OrderDto>> getAllOrders(
+    public ResponseEntity<String> getAllOrders(
             @RequestParam @NotNull @Positive Long userId,
             @PageableDefault(size = 20) Pageable pageable
-    ) {
-        return ResponseEntity.ok(svc.getAllOrders(pageable, userId));
+    ) throws JsonProcessingException {
+
+        PageResponse<OrderDto> pageResponse =
+                svc.getAllOrders(pageable, userId);
+
+        String jsonResult =
+                toJson(pageResponse, Views.Summary.class);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsonResult);
     }
 
     /**
      * Получить заказ по id
      */
     @GetMapping("/{id}")
-    @JsonView(Views.OrderDetail.class)
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable @NotNull @Positive Long id) {
-        return ResponseEntity.ok(svc.getOrderById(id));
+    public ResponseEntity<String> getOrderById(
+            @PathVariable @NotNull @Positive Long id
+    ) throws JsonProcessingException {
+
+        String jsonResult =
+                toJson(svc.getOrderById(id), Views.OrderDetail.class);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsonResult);
     }
 
     /**
      * Создать заказ для пользователя
      */
     @PostMapping
-    @JsonView(Views.OrderDetail.class)
-    public ResponseEntity<OrderDto> createOrder(
+    public ResponseEntity<String> createOrder(
             @RequestParam @NotNull @Positive Long userId,
-            @RequestBody @Valid OrderDto data
-    ) {
+            @RequestBody String data
+    ) throws JsonProcessingException {
+
+        OrderDto reqOrder =
+                mapper.readValue(data, OrderDto.class);
+
+        String jsonResult =
+                toJson(
+                        svc.createOrder(reqOrder, userId),
+                        Views.OrderDetail.class
+                );
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(svc.createOrder(data, userId));
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsonResult);
     }
 
     /**
      * Обновить заказ
      */
     @PatchMapping("/{id}")
-    @JsonView(Views.OrderDetail.class)
-    public ResponseEntity<OrderDto> updateOrder(
+    public ResponseEntity<String> updateOrder(
             @PathVariable @NotNull @Positive Long id,
-            @RequestBody @Valid OrderDto data
-    ) {
-        return ResponseEntity.ok(
-                svc.updateOrder(data, id)
-        );
+            @RequestBody String data
+    ) throws JsonProcessingException {
+
+        OrderDto reqOrder =
+                mapper.readValue(data, OrderDto.class);
+
+        String jsonResult =
+                toJson(
+                        svc.updateOrder(reqOrder, id),
+                        Views.OrderDetail.class
+                );
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsonResult);
     }
 
     /**
      * Удалить заказ
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteOrder(@PathVariable @NotNull @Positive Long id) {
+    public ResponseEntity<String> deleteOrder(
+            @PathVariable @NotNull @Positive Long id
+    ) {
 
         svc.deleteOrder(id);
 
-        return ResponseEntity.ok(
-                "Order deleted successfully"
-        );
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .body("Order deleted successfully");
     }
 
     /**
      * Добавить item в заказ
      */
     @PostMapping("/{id}/items")
-    @JsonView(Views.OrderDetail.class)
-    public ResponseEntity<OrderDto> addItemForOrder(
+    public ResponseEntity<String> addItemForOrder(
             @PathVariable @NotNull @Positive Long id,
-            @RequestBody @Valid ItemDto data
-    ) {
+            @RequestBody String data
+    ) throws JsonProcessingException {
 
-        return ResponseEntity.ok(
-                svc.addItemForOrder(data, id)
-        );
+        ItemDto reqItem =
+                mapper.readValue(data, ItemDto.class);
+
+        String jsonResult =
+                toJson(
+                        svc.addItemForOrder(reqItem, id),
+                        Views.OrderDetail.class
+                );
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsonResult);
+    }
+
+    private String toJson(Object data, Class<?> view)
+            throws JsonProcessingException {
+
+        return mapper.writerWithView(view)
+                .writeValueAsString(data);
     }
 }
