@@ -9,8 +9,10 @@
 !.idea/vcs.xml
 
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 
 *.iml
 *.ipr
 *.iws
+
+target/

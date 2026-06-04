@@ -14,6 +14,7 @@
         <module name="SpringMVC" />
         <module name="GeometryUtils" />
         <module name="JavaCore" />
+        <module name="SpringJDBC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,7 @@
       <module name="GeometryLibrary" options="-parameters" />
       <module name="GeometryUtils" options="-parameters" />
       <module name="JavaCore" options="-parameters" />
+      <module name="SpringJDBC" options="-parameters" />
       <module name="SpringMVC" options="-parameters" />
     </option>
   </component>
