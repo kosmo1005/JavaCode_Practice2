@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>SpringMVC</module>
+        <module>SpringJDBC</module>
     </modules>
 
 </project>
