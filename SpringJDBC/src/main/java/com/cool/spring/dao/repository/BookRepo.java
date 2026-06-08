@@ -27,7 +27,7 @@ public class BookRepo {
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(
                     """
-                    INSERT INTO books(title, author, publication_year)
+                    INSERT INTO employees(title, author, publication_year)
                     VALUES (?, ?, ?)
                     """,
                     Statement.RETURN_GENERATED_KEYS
@@ -49,24 +49,24 @@ public class BookRepo {
 
         String sql = """
                 SELECT id, title, author, publication_year
-                FROM books
+                FROM employees
                 WHERE id = ?
                 """;
 
-        List<Book> books = jdbcTemplate.query(
+        List<Book> employees = jdbcTemplate.query(
                 sql,
                 this::parseResultSet,
                 id
         );
 
-        return books.stream().findFirst();
+        return employees.stream().findFirst();
     }
 
     public List<Book> findAll() {
 
         String sql = """
                 SELECT id, title, author, publication_year
-                FROM books
+                FROM employees
                 """;
 
         return jdbcTemplate.query(sql, this::parseResultSet);
@@ -75,7 +75,7 @@ public class BookRepo {
     public void deleteById(Long id) {
 
         String sql = """
-                DELETE FROM books
+                DELETE FROM employees
                 WHERE id = ?
                 """;
 
@@ -85,7 +85,7 @@ public class BookRepo {
     public int update(Book book) {
 
         String sql = """
-                UPDATE books
+                UPDATE employees
                 SET title = ?,
                     author = ?,
                     publication_year = ?

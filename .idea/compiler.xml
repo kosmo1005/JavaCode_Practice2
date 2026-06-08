@@ -12,6 +12,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="GeometryLibrary" />
         <module name="SpringMVC" />
+        <module name="SpringDataProjection" />
         <module name="GeometryUtils" />
         <module name="JavaCore" />
         <module name="SpringJDBC" />
@@ -26,6 +27,7 @@
       <module name="GeometryLibrary" options="-parameters" />
       <module name="GeometryUtils" options="-parameters" />
       <module name="JavaCore" options="-parameters" />
+      <module name="SpringDataProjection" options="-parameters" />
       <module name="SpringJDBC" options="-parameters" />
       <module name="SpringMVC" options="-parameters" />
     </option>

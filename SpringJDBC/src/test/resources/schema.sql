@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS employees;
 
-CREATE TABLE books (
+CREATE TABLE employees (
                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
                        title VARCHAR(255) NOT NULL,
                        author VARCHAR(255) NOT NULL,
