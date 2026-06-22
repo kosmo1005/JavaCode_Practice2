@@ -1,4 +1,4 @@
-INSERT INTO books(title, author, publication_year)
+INSERT INTO employees(title, author, publication_year)
 VALUES
     ('Clean Code', 'Robert Martin', '2008'),
     ('Effective Java', 'Joshua Bloch', '2018'),
