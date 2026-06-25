@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/GeometryLibrary/pom.xml" />
         <option value="$PROJECT_DIR$/SpringMVC/pom.xml" />
         <option value="$PROJECT_DIR$/SpringJDBC/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringDataProjection/pom.xml" />
       </list>
     </option>
   </component>

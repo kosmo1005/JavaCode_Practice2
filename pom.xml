@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>SpringDataProjection</module>
+        <module>SpringJWT</module>
     </modules>
 
 </project>
