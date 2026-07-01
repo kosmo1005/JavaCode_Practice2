@@ -11,10 +11,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GeometryLibrary" />
-        <module name="SpringMVC" />
         <module name="SpringDataProjection" />
         <module name="GeometryUtils" />
         <module name="JavaCore" />
+        <module name="SpringMVC" />
+        <module name="SpringJWT" />
         <module name="SpringJDBC" />
       </profile>
     </annotationProcessing>
@@ -29,6 +30,7 @@
       <module name="JavaCore" options="-parameters" />
       <module name="SpringDataProjection" options="-parameters" />
       <module name="SpringJDBC" options="-parameters" />
+      <module name="SpringJWT" options="-parameters" />
       <module name="SpringMVC" options="-parameters" />
     </option>
   </component>
