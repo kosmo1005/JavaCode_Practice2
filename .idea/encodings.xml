@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/GeometryApp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/GeometryApp/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/GeometryLibrary/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/GeometryLibrary/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/GeometryUtils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GeometryUtils/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/JavaCore/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/JavaCore/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringDataProjection/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringJDBC/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringJWT/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringMVC/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringMVC/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/NotificationService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/OrderService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/OuterClient/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/PaymentService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/ShippingService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Kafka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
