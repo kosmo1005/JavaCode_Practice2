@@ -1,9 +1,5 @@
 package com.cool.java_core;
 
-import com.cool.java_core.shaps.Circle;
-import com.cool.java_core.shaps.Rectangle;
-import com.cool.java_core.shaps.Shape;
-import com.cool.java_core.shaps.Triangle;
 import com.cool.java_core.three_dimensional_shapes.Cube;
 import com.cool.java_core.three_dimensional_shapes.Pyramid;
 import com.cool.java_core.three_dimensional_shapes.Sphere;
