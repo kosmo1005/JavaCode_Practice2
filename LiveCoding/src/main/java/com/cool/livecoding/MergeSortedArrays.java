@@ -33,8 +33,8 @@ public class MergeSortedArrays {
 
     public static void main(String[] args) {
 
-        int[] arr1 = {5, 10, 15};
-        int[] arr2 = {1, 2, 20};
+        int[] arr1 = {5, 10, 15, 15};
+        int[] arr2 = {1, 2, 15, 20};
         System.out.println(Arrays.toString(merge(arr1, arr2)));
 
     }
@@ -42,26 +42,41 @@ public class MergeSortedArrays {
     public static int[] merge(int[] arr1, int[] arr2) {
 
         int[] result = new int[arr1.length + arr2.length];
-        int maxLength = Math.max(arr1.length, arr2.length);
         int resultIndex = 0;
+        int i = 0;
+        int j = 0;
 
-        for(int i = 0; i < maxLength; i++){
-            if (i < arr1.length && i < arr2.length){
+        while (i < arr1.length && j < arr2.length){
+            if(arr1[i] < arr2[j]){
                 result[resultIndex] = arr1[i];
                 resultIndex++;
-                result[resultIndex] = arr2[i];
+                i++;
+                while (i < arr1.length && arr1[i] < arr2[j]){
+                    result[resultIndex] = arr1[i];
+                    resultIndex++;
+                    i++;
+                }
+            } else {
+                result[resultIndex] = arr2[j];
                 resultIndex++;
-            }
-            if (i >= arr1.length){
-                result[resultIndex] = arr2[i];
-                resultIndex++;
-            }
-            if (i >= arr2.length) {
-                result[resultIndex] = arr1[i];
-                resultIndex++;
+                j++;
+                while (j < arr2.length && arr2[j] < arr1[i]){
+                    result[resultIndex] = arr2[j];
+                    resultIndex++;
+                    j++;
+                }
             }
         }
-        Arrays.sort(result);
+        while (i < arr1.length){
+            result[resultIndex] = arr1[i];
+            resultIndex++;
+            i++;
+        }
+        while (j < arr2.length){
+            result[resultIndex] = arr2[j];
+            resultIndex++;
+            j++;
+        }
 
         return result;
     }
